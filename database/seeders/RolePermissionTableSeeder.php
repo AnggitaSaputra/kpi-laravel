@@ -19,31 +19,39 @@ class RolePermissionTableSeeder extends Seeder
     {
         // create role
         Role::create([
-            'name' => 'superadmin'
+            'name' => 'superadmin',
+            'guard_name' => 'api'
         ]);
         Role::create([
-            'name' => 'admin'
+            'name' => 'admin',
+            'guard_name' => 'api'
         ]);
         Role::create([
-            'name' => 'manager'
+            'name' => 'manager',
+            'guard_name' => 'api'
         ]);
         Role::create([
-            'name' => 'supervisor'
+            'name' => 'supervisor',
+            'guard_name' => 'api'
         ]);
 
 
         // create Permission
         Permission::create([
-            'name' => 'Read User'
+            'name' => 'Read User',
+            'guard_name' => 'api'
         ]);
         Permission::create([
-            'name' => 'Create User'
+            'name' => 'Create User',
+            'guard_name' => 'api'
         ]);
         Permission::create([
-            'name' => 'Edit User'
+            'name' => 'Edit User',
+            'guard_name' => 'api'
         ]);
         Permission::create([
-            'name' => 'Delete User'
+            'name' => 'Delete User',
+            'guard_name' => 'api'
         ]);
 
 
