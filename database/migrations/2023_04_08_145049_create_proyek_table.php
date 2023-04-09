@@ -13,22 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tugas', function (Blueprint $table) {
-            $table->id('id_tugas')->autoIncrement();
-
-            $table->unsignedBigInteger('id_parameter');
-            $table->foreign('id_parameter')->references('id_parameter')->on('parameter');
-            
-            $table->unsignedBigInteger('id_proyek');
-            $table->foreign('id_proyek')->references('id_proyek')->on('proyek');
-
-            $table->string('nama_tugas');
-            $table->string('deskripsi');
-            $table->string('prioritas');
-            $table->string('status');
+        Schema::create('proyek', function (Blueprint $table) {
+            $table->id('id_proyek');
+            $table->string('nama_proyek');
+            $table->string('deskripsi_proyek');
             $table->dateTime('tanggal_mulai');
             $table->dateTime('tanggal_selesai');
-            $table->integer('bobot');
+            $table->time('estimasi_durasi');
+            $table->string('status');
             $table->dateTime('deleted_at');
             $table->string('created_by');
             $table->string('deleted_by');
@@ -44,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tugas');
+        Schema::dropIfExists('proyek');
     }
 };

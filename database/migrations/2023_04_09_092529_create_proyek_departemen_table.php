@@ -13,22 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tugas', function (Blueprint $table) {
-            $table->id('id_tugas')->autoIncrement();
+        Schema::create('proyek_departemen', function (Blueprint $table) {
+            $table->id('id_proyek_departemen');
 
-            $table->unsignedBigInteger('id_parameter');
-            $table->foreign('id_parameter')->references('id_parameter')->on('parameter');
-            
+            $table->unsignedBigInteger('id_departemen');
+            $table->foreign('id_departemen')->references('id_departemen')->on('departemen');
+
             $table->unsignedBigInteger('id_proyek');
             $table->foreign('id_proyek')->references('id_proyek')->on('proyek');
-
-            $table->string('nama_tugas');
-            $table->string('deskripsi');
-            $table->string('prioritas');
-            $table->string('status');
-            $table->dateTime('tanggal_mulai');
-            $table->dateTime('tanggal_selesai');
-            $table->integer('bobot');
+            
             $table->dateTime('deleted_at');
             $table->string('created_by');
             $table->string('deleted_by');
@@ -44,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tugas');
+        Schema::dropIfExists('proyek_departemen');
     }
 };
