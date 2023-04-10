@@ -22,7 +22,7 @@ class RolePermissionTableSeeder extends Seeder
             'name' => 'superadmin',
             'guard_name' => 'api'
         ]);
-        Role::create([
+        $role_admin = Role::create([
             'name' => 'admin',
             'guard_name' => 'api'
         ]);
@@ -72,5 +72,7 @@ class RolePermissionTableSeeder extends Seeder
         // assign user role
         $superadmin->assignRole('superadmin');
         $admin->assignRole('admin');
+
+        $role_admin->givePermissionTo(['Read User','Create User','Edit User','Delete User']);
     }
 }
