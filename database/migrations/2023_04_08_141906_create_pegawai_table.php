@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pegawai', function (Blueprint $table) {
-            $table->id('id_pegawai');
-            
-            $table->unsignedBigInteger('id_perusahaan');
+            $table->increments('id_pegawai');
+    
+            $table->integer('id_perusahaan')->unsigned();
             $table->foreign('id_perusahaan')->references('id_perusahaan')->on('perusahaan');
             
-            $table->unsignedBigInteger('id_departemen');
+            $table->integer('id_departemen')->unsigned();
             $table->foreign('id_departemen')->references('id_departemen')->on('departemen');
             
-            $table->unsignedBigInteger('id_jabatan');
+            $table->integer('id_jabatan')->unsigned();
             $table->foreign('id_jabatan')->references('id_jabatan')->on('jabatan');
             
             $table->string('nama_pegawai');
@@ -31,7 +31,8 @@ return new class extends Migration
             $table->string('pic');
             $table->string('email');
             $table->string('alamat');
-            $table->integer('telepon');
+            $table->string('telepon');
+            $table->string('no_ktp');
             $table->dateTime('tanggal_masuk');
             $table->dateTime('deleted_at');
             $table->string('created_by');

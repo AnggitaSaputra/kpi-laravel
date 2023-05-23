@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('parameter', function (Blueprint $table) {
-            $table->id('id_parameter');
+            $table->increments('id_parameter');
             $table->string('nama_parameter');
             $table->float('bobot');
             $table->dateTime('deleted_at');

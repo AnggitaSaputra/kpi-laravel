@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('proyek_departemen', function (Blueprint $table) {
-            $table->id('id_proyek_departemen');
+            $table->integer('id_proyek_departemen')->primary();
 
-            $table->unsignedBigInteger('id_departemen');
+            $table->unsignedInteger('id_departemen');
             $table->foreign('id_departemen')->references('id_departemen')->on('departemen');
 
-            $table->unsignedBigInteger('id_proyek');
+            $table->unsignedInteger('id_proyek');
             $table->foreign('id_proyek')->references('id_proyek')->on('proyek');
             
             $table->dateTime('deleted_at');

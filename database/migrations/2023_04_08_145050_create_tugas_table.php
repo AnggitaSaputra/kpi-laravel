@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tugas', function (Blueprint $table) {
-            $table->id('id_tugas')->autoIncrement();
+            $table->increments('id_tugas');
 
-            $table->unsignedBigInteger('id_parameter');
+            $table->unsignedInteger('id_parameter');
             $table->foreign('id_parameter')->references('id_parameter')->on('parameter');
             
-            $table->unsignedBigInteger('id_proyek');
+            $table->unsignedInteger('id_proyek');
             $table->foreign('id_proyek')->references('id_proyek')->on('proyek');
 
             $table->string('nama_tugas');

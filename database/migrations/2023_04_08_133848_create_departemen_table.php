@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('departemen', function (Blueprint $table) {
-            $table->id('id_departemen');
+            $table->increments('id_departemen');
             $table->string('nama_departemen');
             $table->dateTime('deleted_at');
             $table->string('created_by');

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pegawai_bertugas', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_tugas');
+            $table->unsignedInteger('id_tugas');
             $table->foreign('id_tugas')->references('id_tugas')->on('tugas');
 
-            $table->unsignedBigInteger('id_pegawai');
+            $table->unsignedInteger('id_pegawai');
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawai');
             
             $table->dateTime('deleted_at');
