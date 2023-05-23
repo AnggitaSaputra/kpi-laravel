@@ -17,10 +17,6 @@ return new class extends Migration
             $table->increments('id_parameter');
             $table->string('nama_parameter');
             $table->float('bobot');
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }

@@ -16,10 +16,6 @@ return new class extends Migration
         Schema::create('departemen', function (Blueprint $table) {
             $table->increments('id_departemen');
             $table->string('nama_departemen');
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }

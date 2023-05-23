@@ -29,10 +29,6 @@ return new class extends Migration
             $table->dateTime('tanggal_mulai');
             $table->dateTime('tanggal_selesai');
             $table->integer('bobot');
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }

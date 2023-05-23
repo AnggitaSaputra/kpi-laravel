@@ -20,10 +20,6 @@ return new class extends Migration
             $table->unsignedInteger('id_pegawai');
             $table->foreign('id_pegawai')->references('id_pegawai')->on('pegawai');
             
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }

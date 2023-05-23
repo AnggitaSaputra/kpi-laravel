@@ -22,10 +22,6 @@ return new class extends Migration
             $table->unsignedInteger('id_proyek');
             $table->foreign('id_proyek')->references('id_proyek')->on('proyek');
             
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }

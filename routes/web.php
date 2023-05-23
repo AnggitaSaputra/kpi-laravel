@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\V1\JabatanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Testing
+Route::get('/jabatan', function () {
+    return view('testing-1.jabatan');
+});
+
+Route::post('/jabatan/simpan', [JabatanController::class, 'SimpanJabatan']);
+Route::get('/jabatan/ambil', [JabatanController::class, 'ReadJabatan']);

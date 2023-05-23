@@ -34,10 +34,6 @@ return new class extends Migration
             $table->string('telepon');
             $table->string('no_ktp');
             $table->dateTime('tanggal_masuk');
-            $table->dateTime('deleted_at');
-            $table->string('created_by');
-            $table->string('deleted_by');
-            $table->string('updated_by');
             $table->timestamps();
         });
     }
