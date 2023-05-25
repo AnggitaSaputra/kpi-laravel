@@ -4,36 +4,43 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Parameter;
 
 class ParameterController extends Controller
 {
     public function ReadParameter()
     {
-        $parameter = DB::table('parameter')->get();
-        return $parameter;
+        $parameter = Parameter::all();
+        return response($parameter, 200);
     }
+
     public function SimpanParameter(Request $x)
     {
-        $parameter = DB::table('parameter')->insertGetId([
-            'nama_parameter' => $x->nama_parameter,
-            'bobot'=> $x ->bobot
+       Parameter::create([
+            'nama_parameter'=>$x->nama_parameter,
+            'bobot'=>$x->bobot
         ]);
+        return response('Berhasil disimpan!',200);
     }
+
     public function HapusParameter($id_parameter)
     {
-        $parameter = DB::table('parameter')->where('id_parameter', $id_parameter)->delete();
+        Parameter::find($id_parameter)->delete();
+        return response('Berhasil dihapus!',200);
     }
-    public function EditParameter($id_parameter)
-    {
-        $parameter = DB::table('parameter')->where('id_parameter', $id_parameter)->get();
+
+    public function getEditParameterByID($id_parameter) {
+        $parameter = Parameter::where('id_parameter', "=", $id_parameter)->get();
         return $parameter;
     }
-    public function EdittParameter($x)
+
+    public function EditParameter(Request $x)
     {
-        $parameter = DB::table('parameter')->where('id_parameter', $x->id_parameter)->update([
-            'nama_parameter' => $x->nama_parameter,
-            'bobot'=> $x ->bobot
+        Parameter::where('id_parameter', '=', $x->id_parameter)->update([
+            'nama_parameter'=>$x->nama_parameter,
+            'bobot'=>$x->bobot
         ]);
+
+        return response('Berhasil diedit!',200);
     }
-    
 }

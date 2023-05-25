@@ -16,3 +16,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Kelompok1
+resources/views/layout
+resources/views/testing-1

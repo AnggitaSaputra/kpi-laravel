@@ -3,44 +3,53 @@
 namespace App\Http\Controllers\API\V1;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
+
 
 class ProyekController extends Controller
 {
     public function ReadProyek()
     {
-        $proyek = DB::table('proyek')->get();
-        return $proyek;
+        $proyek = Proyek::all();
+        return response($proyek, 200);
     }
+
     public function SimpanProyek(Request $x)
     {
-        $proyek = DB::table('proyek')->insertGetId([
-            'nama_proyek' => $x->nama_proyek,
+       Proyek::create([
+            'nama_proyek'=>$x->nama_proyek,
             'deskripsi_proyek'=> $x ->deskripsi,
             'tanggal_mulai' => $x -> tanggal_mulai,
             'tanggal_selesai' => $x -> tanggal_selesai,
             'estimasi_durasi' => $x -> estimasi_durasi,
-            'status' => $x -> status,
+            'status' => $x -> status
         ]);
+        return response('Berhasil disimpan!',200);
     }
+
     public function HapusProyek($id_proyek)
     {
-        $proyek = DB::table('proyek')->where('id_proyek', $id_proyek)->delete();
+        Proyek::find($id_proyek)->delete();
+        return response('Berhasil dihapus!',200);
     }
-    public function Editproyek($id_proyek)
-    {
-        $proyek = DB::table('proyek')->where('id_proyek', $id_proyek)->get();
+
+    public function getEditProyekByID($id_proyek) {
+        $proyek = Proyek::where('id_proyek', "=", $id_proyek)->get();
         return $proyek;
     }
-    public function Edittproyek($x)
+
+    public function EditProyek(Request $x)
     {
-        $proyek = DB::table('proyek')->where('id_proyek', $x->id_proyek)->update([
-            'nama_proyek' => $x->nama_proyek,
+        Proyek::where('id_proyek', '=', $x->id_proyek)->update([
+            'nama_proyek'=>$x->nama_proyek,
             'deskripsi_proyek'=> $x ->deskripsi,
             'tanggal_mulai' => $x -> tanggal_mulai,
             'tanggal_selesai' => $x -> tanggal_selesai,
             'estimasi_durasi' => $x -> estimasi_durasi,
-            'status' => $x -> status,
+            'status' => $x -> status
         ]);
+
+        return response('Berhasil diedit!',200);
     }
 }

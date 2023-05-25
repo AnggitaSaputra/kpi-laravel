@@ -4,33 +4,41 @@ namespace App\Http\Controllers\API\V1;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Departemen;
 
 class DepartemenController extends Controller
 {
     public function ReadDepartemen()
     {
-        $departemen = DB::table('departemen')->get();
-        return $departemen;
+        $departemen = Departemen::all();
+        return response($departemen, 200);
     }
+
     public function SimpanDepartemen(Request $x)
     {
-        $departemen = DB::table('departemen')->insertGetId([
-            'nama_departemen' => $x->nama_departemen
+        Jabatan::create([
+            'nama_departemen'=>$x->nama_departemen
         ]);
+        return response('Berhasil disimpan!',200);
     }
+
     public function HapusDepartemen($id_departemen)
     {
-        $jabatan = DB::table('jabatan')->where('id_jabatan', $id_jabatan)->delete();
+        Departemen::find($id_departemen)->delete();
+        return response('Berhasil dihapus!',200);
     }
-    public function EditDepartemen($id_departemen)
-    {
-        $departemen = DB::table('departemen')->where('id_departemen', $id_jabatan)->get();
+
+    public function getEditDepartemenByID($id_jabatan) {
+        $departemen = Departemen::where('id_departemen', "=", $id_departemen)->get();
         return $departemen;
     }
-    public function EdittDepartemen($x)
+
+    public function EditDepartemen(Request $x)
     {
-        $departemen = DB::table('departemen')->where('id_departemen', $x->id_departemen)->update([
-            'nama_departemen' => $x->nama_departemen
+        Departemen::where('id_departemen', '=', $x->id_departemen)->update([
+            'nama_departemen'=>$x->nama_departemen
         ]);
+
+        return response('Berhasil diedit!',200);
     }
 }

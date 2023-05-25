@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\JabatanController;
+use App\Http\Controllers\API\V1\PegawaiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +15,13 @@ use App\Http\Controllers\API\V1\JabatanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.main');
 });
 
 //Testing
-Route::get('/jabatan', function () {
-    return view('testing-1.jabatan');
+Route::get('/testing', function () {
+    return view('testing-1.testing');
 });
 
-Route::post('/jabatan/simpan', [JabatanController::class, 'SimpanJabatan']);
-Route::get('/jabatan/ambil', [JabatanController::class, 'ReadJabatan']);
+Route::post('/pegawai/simpan', [PegawaiController::class, 'SimpanPegawai']);
+Route::get('/pegawai/ambil', [PegawaiController::class, 'ReadPegawai']);

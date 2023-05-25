@@ -32,7 +32,7 @@ class migrateTeam2 extends Command
             '2023_04_08_133848_create_departemen_table.php',
             '2023_04_08_141434_create_perusahaan_table.php',
         ];
-        
+
         foreach($migrations as $migration)
         {
            $basePath = 'database/migrations/';          
