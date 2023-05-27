@@ -8,6 +8,9 @@ use App\Models\Parameter;
 
 class ParameterController extends Controller
 {
+    public function view() {
+        return view('parameter.main');
+    }
     public function ReadParameter()
     {
         $parameter = Parameter::all();

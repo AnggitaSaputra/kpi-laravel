@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 
 class ProyekController extends Controller
-{
+{   
+    public function view() {
+        return view('proyek.main');
+    }
     public function ReadProyek()
     {
         $proyek = Proyek::all();

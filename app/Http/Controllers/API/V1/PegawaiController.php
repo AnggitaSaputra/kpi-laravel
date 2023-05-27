@@ -10,7 +10,10 @@ use App\Models\Pegawai;
 use function PHPUnit\Framework\fileExists;
 
 class PegawaiController extends Controller
-{
+{   
+    public function view() {
+        return view('pegawai.main');
+    }
     public function ReadPegawai()
     {
         $pegawai = Pegawai::all();

@@ -1,0 +1,14 @@
+:root {
+    --warna_biru_tua: #031d3c;
+    --warna_kuning: #ffba00;
+    --warna_putih: #ffffff;
+}
+
+/* Navbar */
+.nav-link:hover {
+    color: var(--warna_kuning) !important; 
+}
+#sidebar .active {
+    background-color: var(--warna_putih) !important;
+    color: var(--warna_kuning) !important;
+}

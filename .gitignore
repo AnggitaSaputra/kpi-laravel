@@ -18,5 +18,5 @@ yarn-error.log
 /.vscode
 
 # Kelompok1
-resources/views/layout
+# resources/views/layout
 resources/views/testing-1
