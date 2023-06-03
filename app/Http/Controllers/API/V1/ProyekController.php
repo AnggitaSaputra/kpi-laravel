@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
-
+use Yajra\DataTables\DataTables;
+use App\Models\Departemen;
 
 class ProyekController extends Controller
 {   
@@ -15,7 +16,20 @@ class ProyekController extends Controller
     public function ReadProyek()
     {
         $proyek = Proyek::all();
-        return response($proyek, 200);
+        return DataTables::of($proyek)
+            ->addColumn('action', function($data) {
+                $url = str_replace("/get", "", url()->current());
+                $button = '<a href="'.$url.'/edit/'.$data->id_proyek.'" class="btn btn-primary mx-1">Edit</a>';
+                $button .= '<a href="'.$url.'/hapus/'.$data->id_proyek.'" class="btn btn-danger mx-1">Hapus</a>';
+                $button .= '<a href="'.$url.'/detail/'.$data->id_proyek.'" class="btn btn-primary mx-1">Sub Tugas</a>';
+                return $button;
+            })
+            ->make(true);
+    }
+
+    Public function viewTambah() {
+        $data['departemen'] = Departemen::all();
+        return view('proyek.add', $data);
     }
 
     public function SimpanProyek(Request $x)

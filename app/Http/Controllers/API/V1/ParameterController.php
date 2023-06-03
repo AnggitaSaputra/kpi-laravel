@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Parameter;
+use Yajra\DataTables\DataTables;
 
 class ParameterController extends Controller
 {
@@ -14,7 +15,15 @@ class ParameterController extends Controller
     public function ReadParameter()
     {
         $parameter = Parameter::all();
-        return response($parameter, 200);
+        return DataTables::of($parameter)
+        ->addColumn('action', function($data) {
+            $url = str_replace("/get", "", url()->current());
+            $button = '<a href="'.$url.'/edit/'.$data->id_parameter.'" class="btn btn-primary mx-1">Edit</a>';
+            $button .= '<a href="'.$url.'/hapus/'.$data->id_parameter.'" class="btn btn-danger mx-1">Hapus</a>';
+            return $button;
+        })
+        ->make(true);
+ 
     }
 
     public function SimpanParameter(Request $x)

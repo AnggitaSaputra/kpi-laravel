@@ -1,4 +1,8 @@
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh; background-color: var(--warna_biru_tua);">
+<div id="sidebar" class="position-fixed d-flex flex-column flex-shrink-0">
+    <div id="sidebar-button">
+      <i id="sidebar-open" class="fa-solid fa-bars fa-2x sidebar-active"></i>
+      <i id="sidebar-close" class="fa-solid fa-square-xmark fa-2x"></i>
+    </div>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="/dashboard" 
@@ -83,6 +87,7 @@
     </div>
     
 </div>
+<script src="{{ asset('js/sidebar.js') }}"></script>
 {{-- 
   <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">

@@ -3,22 +3,44 @@
 namespace App\Http\Controllers\API\V1;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Departemen;
+use App\Models\Jabatan;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Pegawai;
+use Yajra\DataTables\DataTables;
 
 use function PHPUnit\Framework\fileExists;
 
 class PegawaiController extends Controller
 {   
-    public function view() {
+    public function view()
+    {
         return view('pegawai.main');
     }
     public function ReadPegawai()
-    {
+    {   
         $pegawai = Pegawai::all();
-        return response($pegawai, 200);
+        return DataTables::of($pegawai)
+            ->addColumn('action', function($data) {
+                $url = str_replace("/get", "", url()->current());
+                $button = '<a href="'.$url.'/edit/'.$data->id_pegawai.'" class="btn btn-primary mx-1">Edit</a>';
+                $button .= '<a href="'.$url.'/hapus/'.$data->id_pegawai.'" class="btn btn-danger mx-1">Hapus</a>';
+                $button .= '<a href="'.$url.'/detail/'.$data->id_pegawai.'" class="btn btn-primary mx-1">Detail Pegawa</a>';
+                return $button;
+            })
+            ->make(true);
+        
     }
+    Public function viewTambah() {
+        $data['departemen'] = Departemen::all();
+        $data['perusahaan'] = Perusahaan::all();
+        $data['jabatan'] = Jabatan::all();
+
+        return view('pegawai.add', $data);
+    }
+
     public function SimpanPegawai(Request $x)
     {
         // Add Picture
@@ -80,5 +102,11 @@ class PegawaiController extends Controller
         ]);
 
         return response('Berhasil diedit!',200);
+    }
+
+    public function cariPegawai($cari) 
+    {   $xx=new Pegawai();       
+        $pegawai=$xx->Caripegawai($cari);  
+        return view('pegawai.dashboard',['pegawai'=>$supplier]);        
     }
 }
