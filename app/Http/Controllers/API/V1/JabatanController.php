@@ -5,40 +5,64 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jabatan;
+use Yajra\DataTables\DataTables;
 
 class JabatanController extends Controller
 {
+    public function view()
+    {
+        return view('jabatan.main');
+    }
+
     public function ReadJabatan()
     {
         $jabatan = Jabatan::all();
-        return response($jabatan, 200);
+        return DataTables::of($jabatan)
+        ->addColumn('action', function($data) {
+            $url = str_replace("/get", "", url()->current());
+            $button = '<a href="'.$url.'/edit/'.$data->id_jabatan.'" class="btn btn-primary mx-1">Edit</a>';
+            $button .= '<a href="'.$url.'/hapus/'.$data->id_jabatan.'" class="btn btn-danger mx-1">Hapus</a>';
+            return $button;
+        })
+        ->make(true);    
+    }
+
+    Public function viewTambah() {
+
+        return view('jabatan.add');
     }
 
     public function SimpanJabatan(Request $x)
     {
-       Jabatan::create([
+        $id_user = DB::table('jabatan')->max('id_jabatan');
+        $id_user += 1;
+
+        Jabatan::create([
             'nama_jabatan'=>$x->nama_jabatan
         ]);
-        return response('Berhasil disimpan!',200);
+        
+        return redirect('/jabatan')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function HapusJabatan($id_jabatan)
+    public function HapusJabatan($id)
     {
-        Jabatan::find($id_jabatan)->delete();
-        return response('Berhasil dihapus!',200);
+        Jabatan::where('id_jabatan', '=', $id)->delete();
+        return redirect('/jabatan')->with('success', 'Data berhasil dihapus!');
+
     }
 
-    public function getEditJabatanByID($id_jabatan) {
-        $jabatan = Jabatan::where('id_jabatan', "=", $id_jabatan)->get();
-        return response($jabatan, 200);
+    public function viewEdit($id) {
+        $data['jabatan'] = Jabatan::where('id_jabatan', '=', $id)->get();
+        return view('jabatan.edit', $data);
     }
 
-    public function EditJabatan(Request $x)
+    public function EditJabatan(Request $x, $id)
     {
-        Jabatan::where('id_jabatan', '=', $x->id_jabatan)->update([
-            'nama_jabatan'=>$x->nama_jabatan
+        $id_user = $id;
+        Jabatan::where('id_jabatan', '=', $id)->update([
+            'nama_jabatan' => $x->nama_jabatan,
         ]);
 
-        return response('Berhasil diedit!',200);
+        return redirect('/jabatan')->with('success', 'Data berhasil dirubah!');
     }
 }

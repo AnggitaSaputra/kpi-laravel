@@ -25,34 +25,45 @@ class ParameterController extends Controller
         ->make(true);
  
     }
+    Public function viewTambah() {
+
+        return view('parameter.add');
+    }
 
     public function SimpanParameter(Request $x)
     {
-       Parameter::create([
+        $id_user = DB::table('parameter')->max('id_parameter');
+        $id_user += 1;
+
+        Parameter::create([
             'nama_parameter'=>$x->nama_parameter,
             'bobot'=>$x->bobot
         ]);
-        return response('Berhasil disimpan!',200);
+        
+        return redirect('/parameter')->with('success', 'Data berhasil ditambahkan!');
+
     }
 
-    public function HapusParameter($id_parameter)
+    public function HapusParameter($id)
     {
-        Parameter::find($id_parameter)->delete();
-        return response('Berhasil dihapus!',200);
+        Parameter::where('id_parameter', '=', $id)->delete();
+        return redirect('/parameter')->with('success', 'Data berhasil dihapus!');
+
     }
 
-    public function getEditParameterByID($id_parameter) {
-        $parameter = Parameter::where('id_parameter', "=", $id_parameter)->get();
-        return $parameter;
+    public function viewEdit($id) {
+        $data['parameter'] = Parameter::where('id_parameter', '=', $id)->get();
+        return view('parameter.edit', $data);
     }
 
-    public function EditParameter(Request $x)
+    public function EditParameter(Request $x, $id)
     {
-        Parameter::where('id_parameter', '=', $x->id_parameter)->update([
-            'nama_parameter'=>$x->nama_parameter,
-            'bobot'=>$x->bobot
+        $id_user = $id;
+        Parameter::where('id_parameter', '=', $id)->update([
+            'nama_parameter' => $x->nama_parameter,
         ]);
 
-        return response('Berhasil diedit!',200);
+        return redirect('/parameter')->with('success', 'Data berhasil dirubah!');
     }
+
 }

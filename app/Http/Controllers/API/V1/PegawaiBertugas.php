@@ -10,12 +10,12 @@ class PegawaiBertugas extends Controller
 {
     public function ReadPegawaiBertugas()
     {
-        $pegawai_bertugas = PegawaiBertugas::all();
+        $pegawai_bertugas = Pegawai_Bertugas::all();
         return response($pegawai_bertugas, 200);
     }
     public function SimpanPegawaiBertugas(Request $x)
     {
-        PegawaiBertugas::create([
+        Pegawai_Bertugas::create([
             'id_tugas'=>$x->id_tugas,
             'id_pegawai'=> $x ->id_pegawai
         ]);
@@ -23,7 +23,7 @@ class PegawaiBertugas extends Controller
     }
     public function HapusPegawaiBertugas($id_tugas,$id_pegawai)
     {
-        PegawaiBertugas::where([
+        Pegawai_Bertugas::where([
             ['id_tugas', '=', $id_tugas],
             ['id_pegawai', '=', $id_pegawai],
         ])->delete();
@@ -31,7 +31,7 @@ class PegawaiBertugas extends Controller
     }
 
     public function getEditPegawaiBertugasByID($id_tugas,$id_pegawai) {
-        $pegawai_bertugas = PegawaiBertugas::where([
+        $pegawai_bertugas = Pegawai_Bertugas::where([
             ['id_tugas', '=', $id_tugas],
             ['id_pegawai', '=', $id_pegawai],
         ])->get();
@@ -40,12 +40,12 @@ class PegawaiBertugas extends Controller
 
     public function EditPegawaiBertugas(Request $x)
     {
-        PegawaiBertugas::where([
-            ['id_tugas', '=', $id_tugas],
-            ['id_pegawai', '=', $id_pegawai],
-        ])->update([
-            'id_tugas'=>$x->id_tugas
-        ]);
+        // Pegawai_Bertugas::where([
+        //     ['id_tugas', '=', $id_tugas],
+        //     ['id_pegawai', '=', $id_pegawai],
+        // ])->update([
+        //     'id_tugas'=>$x->id_tugas
+        // ]);
 
         return response('Berhasil diedit!',200);
     }

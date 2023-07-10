@@ -8,7 +8,7 @@
         <a href="/dashboard" 
           @if (Request::is("dashboard") || Request::is("dashboard/*"))
             class="nav-link active"
-          @else 
+          @else
             class="nav-link"
             style="color:var(--warna_putih)"
           @endif 
@@ -27,20 +27,7 @@
           @endif 
         >
         <i class="fa-solid fa-users"></i>
-          <svg class="bi pe-none" width="30" height="30"><use xlink:href="#speedometer2"></use></svg>Pegawai
-        </a>
-      </li>
-      <li>
-        <a href="/proyek" 
-          @if (Request::is("proyek") || Request::is("proyek/*"))
-            class="nav-link active"
-          @else 
-            class="nav-link"
-            style="color:var(--warna_putih)"
-          @endif 
-        style="color:var(--warna_putih)">
-          <i class="fa-regular fa-calendar-days"></i>
-          <svg class="bi pe-none me-2" width="30" height="30"><use xlink:href="#table"></use></svg>Proyek
+          <svg class="bi pe-none" width="30" height="30"><use xlink:href="#speedometer2"></use></svg>Employees
         </a>
       </li>
       <li>
@@ -55,6 +42,29 @@
             <i class="fa-solid fa-chart-simple"></i>
           <svg class="bi pe-none me-2" width="30" height="30"><use xlink:href="#grid"></use></svg>Parameter
         </a>
+      </li>
+      <li>
+        <a href="/proyek" 
+          @if (Request::is("proyek") || Request::is("proyek/*"))
+            class="nav-link active"
+          @else 
+            class="nav-link"
+            style="color:var(--warna_putih)"
+          @endif 
+        style="color:var(--warna_putih)">
+        <i class='bx bx-task'></i>
+          <svg class="bi pe-none me-2" width="30" height="30"><use xlink:href="#table"></use></svg>Proyek
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:var(--warna_putih)">
+          <i class="fa-regular fa-calendar-days"></i>  
+         <svg class="bi pe-none me-2" width="30" height="30"><use xlink:href="#table"></use></svg>Master
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <li><a class="dropdown-item" href="/departemen" >Departemen</a></li>
+            <li><a class="dropdown-item" href="/jabatan">Jabatan</a></li>
+        </ul>
       </li>
     </ul>
 

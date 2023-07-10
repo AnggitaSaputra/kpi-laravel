@@ -52,6 +52,12 @@
     border-radius: 5px;
     background-color: var(--warna_biru_tua);
     color: var(--warna_putih);
+    margin-left: 130px;
+}
+.datatable-tambah {
+    margin-bottom: -60px;
+    position: relative;
+    z-index: 100;
 }
 .dataTables_wrapper > div:nth-child(2) input {
     background-color: var(--warna_putih);

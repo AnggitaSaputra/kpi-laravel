@@ -12,16 +12,18 @@
 <div class="row" style="display:flex; justify-content: space-between;" >
   <!-- Advanced Tables -->
   <div class="panel panel-default">
+    <a href="{{ url()->current() }}/add" class="btn btn-success datatable-tambah">Tambah Data</a>
       <div class="panel-heading">
-          <!-- <button type="button" class="btn btn-success">Tambah Data</button> -->
       </div>
       <div class="panel-body">
-          <table id="tabel-parameter" class="table table-striped table-bordered table-hover display nowrap" cellspacing="0" width="100%" id="dataTables-example">
+          <table id="tabel-parameter" class="rounded overflow-hidden table table-striped table-bordered table-hover display nowrap" cellspacing="0" width="100%" id="dataTables-example">
               <thead>
                   <tr>
                       <th>Id Parameter</th>
                       <th>Nama Parameter</th>
                       <th>Bobot</th>
+                      <th>Created At</th>
+                      <th>Update At</th>
                       <th>Action</th>
                   </tr>
               </thead>
@@ -51,6 +53,14 @@
               {
                   data: 'bobot',
                   name: 'bobot'
+              },
+              {
+                  data: 'created_at',
+                  name: 'created_at'
+              },
+              {
+                  data: 'updated_at',
+                  name: 'updated_at'
               },
               {
                   data: 'action',

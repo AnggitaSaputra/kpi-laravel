@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('deskripsi_proyek');
             $table->dateTime('tanggal_mulai');
             $table->dateTime('tanggal_selesai');
-            $table->time('estimasi_durasi');
+            $table->integer('estimasi_durasi');
             $table->string('status');
             $table->timestamps();
         });

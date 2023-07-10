@@ -61,11 +61,36 @@
            </a>
        </div>
        <br>
+
+        {{-- SweetAlert 2 --}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
        <div id="main-yield" class="container-fluid">
           @yield('content')
        </div>
       </div>
     </main>
+
+    
+    {{-- SWAL --}}
+    @if(Session::has('success'))
+    <script>
+          Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: '{{ Session::get('success')}}' ,
+          })
+    </script>
+    @endif
+    @if(Session::has('failed'))
+    <script>
+          Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: '{{ Session::get('failed')}}',
+          })
+    </script>
+    @endif
+    {{-- END OF SWAL --}}
 
     {{-- BOOTSTRAP --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

@@ -10,6 +10,7 @@ class Perusahaan extends Model
     use HasFactory;
     
     protected $table = 'perusahaan';
+    protected $primaryKey = 'id_perusahaan';
     protected $fillable = [
         'nama_perusahaan',
         'no_telpon',
@@ -17,4 +18,8 @@ class Perusahaan extends Model
         'provisi',
         'kota'
     ];
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    } 
 }

@@ -10,6 +10,7 @@ class Pegawai extends Model
     use HasFactory;
 
     protected $table = 'pegawai';
+    protected $primaryKey = 'id_pegawai';
     protected $fillable = [
         'id_departemen',
         'id_perusahaan',
@@ -24,10 +25,20 @@ class Pegawai extends Model
         'no_ktp',
         'tanggal_masuk'
     ];
-
-    public function Caripegawai($cari)  { 
-        $pegawai=DB::table('pegawai')-> where('id_pegawai',$cari)->get();  
-        return $pegawai; 
-       
-       } 
+    public function tugas()
+    {
+        return $this->hasMany(Pegawai_Bertugas::class);
+    } 
+    public function departemen()
+    {
+        return $this->belongsTo(Departemen::class, 'id_departemen', 'id_departemen');
+    } 
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class, 'id_jabatan', 'id_jabatan');
+    } 
+    public function perusahaan()
+    {
+        return $this->belongsTo(Perusahaan::class, 'id_perusahaan', 'id_perusahaan');
+    } 
 }
